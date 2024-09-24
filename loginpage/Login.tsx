@@ -5,6 +5,7 @@ import {Shadow} from 'react-native-shadow-2'
 import { useNavigation } from '@react-navigation/native';
 import globalStyles from '../styles/globalStyles';
 import { VerifyMail } from '../OlvidasteTuContraseña/VerifyMail';
+import React from 'react';
 
 export default function Login(){
 const navigation = useNavigation();

@@ -3,6 +3,7 @@ import globalStyles from '../styles/globalStyles';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import ProfileScreen from './ProfileScreen';
+import React from 'react';
 
 export default function SettingsScreen() {
     const navigation = useNavigation();

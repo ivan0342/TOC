@@ -4,7 +4,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import ListaCentros from './ListaCentros';
 import HomeScreen from './Homescreen';
-import Test from './Test';
 import TOCtest from './TOCtest';
 
 // Drawer Navigator

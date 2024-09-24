@@ -3,6 +3,7 @@ import { ImageBackground, Pressable, SafeAreaView, StyleSheet, Text, TextInput, 
 import globalStyles from '../styles/globalStyles';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 import { ScrollView } from 'react-native-gesture-handler';
+import React from 'react';
 
 export default function Register(){
     const navigation= useNavigation();
