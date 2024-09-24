@@ -4,11 +4,28 @@ import { ImageBackground, Pressable, SafeAreaView, StyleSheet, Text, TextInput, 
 import {Shadow} from 'react-native-shadow-2'
 import { useNavigation } from '@react-navigation/native';
 import globalStyles from '../styles/globalStyles';
-import { VerifyMail } from '../OlvidasteTuContraseña/VerifyMail';
+import { useState } from 'react';
+import axios from 'axios';
 
 export default function Login(){
 const navigation = useNavigation();
+    const [correo,setCorreo] = useState(" ");
+    const [contraseña,setContraseña] = useState(" ");
 
+    const handdleLogin= async()=>{
+        try{
+            const response = await axios.post('http://10.214.107.58:3000/api/users/login',{
+                email: correo,
+                contraseña
+            });
+            if (response.status === 200) {
+                alert('Inicio de sesión exitoso');
+                navigation.navigate('Inicio'); // Navegar a la pantalla principal
+            }
+        }catch(error){
+            alert("incio de secion fallido revisa bien tus datos o si ya estas registrado", error.message)
+        }
+    }
     return(
         <View style={globalStyles.container}>
             <ImageBackground style={globalStyles.background} source={require('../images/Frame5.jpg')}>
@@ -19,12 +36,22 @@ const navigation = useNavigation();
                         <View style={globalStyles.line} />
 
                         <Text>Correo</Text>
-                        <TextInput style={styles.textinput}></TextInput>
+                        <TextInput 
+                        style={styles.textinput}
+                        value={correo}
+                        onChangeText={setCorreo}
+                        keyboardType="email-address"
+                        ></TextInput>
 
                         <Text>Contraseña</Text>
-                        <TextInput style={styles.textinput}></TextInput>
+                        <TextInput 
+                        style={styles.textinput}
+                        value ={contraseña}
+                        onChangeText={setContraseña}
+                        secureTextEntry
+                        ></TextInput>
 
-                        <Pressable style={styles.botones} onPress={()=>navigation.navigate('Inicio')}>
+                        <Pressable style={styles.botones} onPress={handdleLogin} >
                             <Text style={styles.textbuttons}>Log In</Text>
                         </Pressable>
                         <Text onPress={()=>navigation.navigate('VerifyMail')} 
