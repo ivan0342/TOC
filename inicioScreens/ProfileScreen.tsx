@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// ProfileScreen.tsx
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -11,10 +12,38 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import axios from "axios";
+import { useAuth } from "../AuthContext";
 import globalStyles from "../styles/globalStyles";
 
 const ProfileScreen: React.FC = () => {
+  const { email } = useAuth(); // Obtener el correo del contexto global
   const [photoUri, setPhotoUri] = useState<string | null>(null);
+  const [nombre, setNombre] = useState("");
+  const [apellidos, setApellidos] = useState("");
+  const [fechaNacimiento, setFechaNacimiento] = useState("");
+
+  // Obtener la información del usuario cuando se monta el componente
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.post(
+          "http://192.168.100.17:3000/api/users/infoProfileByEmail",
+          { email }  // Enviar el correo en el cuerpo de la solicitud
+        );
+        const userData = response.data;
+        setNombre(userData.name);
+        setApellidos(userData.apellidos);
+        setFechaNacimiento(new Date(userData.fecha_nacimiento).toLocaleDateString());
+      } catch (error) {
+        Alert.alert("Error al obtener los datos del usuario", error.message);
+      }
+    };
+
+    if (email) {
+      fetchUserData();
+    }
+  }, [email]);
 
   const pickImage = async () => {
     const permissionResult =
@@ -65,7 +94,12 @@ const ProfileScreen: React.FC = () => {
               <FontAwesome name="pencil" size={20} color="#000" />
             </Pressable>
           </View>
-          <TextInput style={styles.texto} placeholder="Sample Text" />
+          <TextInput
+            style={styles.texto}
+            value={nombre}
+            onChangeText={setNombre}
+          />
+
           <View style={styles.textWithButton}>
             <Text style={styles.texto}>Apellidos</Text>
             <Pressable
@@ -75,9 +109,19 @@ const ProfileScreen: React.FC = () => {
               <FontAwesome name="pencil" size={20} color="#000" />
             </Pressable>
           </View>
-          <TextInput style={styles.texto} placeholder="Sample Text" />
+          <TextInput
+            style={styles.texto}
+            value={apellidos}
+            onChangeText={setApellidos}
+          />
+
           <Text style={styles.texto}>Fecha Nacimiento</Text>
-          <TextInput style={styles.texto} placeholder="DD/MM/AAAA" />
+          <TextInput
+            style={styles.texto}
+            value={fechaNacimiento}
+            onChangeText={setFechaNacimiento}
+            placeholder="DD/MM/AAAA"
+          />
         </View>
       </ImageBackground>
     </View>

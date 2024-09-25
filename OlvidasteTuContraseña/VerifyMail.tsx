@@ -8,9 +8,10 @@ import {
 } from "react-native";
 import globalStyles from "../styles/globalStyles";
 import { useNavigation } from '@react-navigation/native';
-
+import { ChangePassword } from "./ChangePassword";
 
 export default function VerifyMail() {
+  const navigation =useNavigation();
   return (
     <View style={globalStyles.container}>
       <ImageBackground
@@ -27,7 +28,7 @@ export default function VerifyMail() {
           <View style={styles.inputContainer}>
             <TextInput style={styles.textinput} />
           </View>
-          <Pressable style={styles.botones}>
+          <Pressable style={styles.botones} onPress={()=>navigation.navigate("ChangePassword")}>
             <Text
               style={{
                 fontFamily: "Bebas Neue",
