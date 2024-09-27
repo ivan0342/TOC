@@ -24,10 +24,16 @@ export default function Register(){
             alert('Las contraseñas no coinciden');
             return;
         }
-
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar el correo
+        if (!emailRegex.test(correo)) {
+            alert('El formato del correo electrónico no es válido');
+            return;
+        }
+    
         try {
             // Hacer la solicitud POST al backend para registrar al usuario
-            const response = await axios.post('http://10.214.107.58:3000/api/users/register', {
+            const response = await axios.post('http://10.214.112.174:3000/api/users/register', {
                 name: nombre,
                 apellidos,
                 fechaNacimiento,
@@ -38,7 +44,7 @@ export default function Register(){
             alert('Registro exitoso');
             navigation.goBack(); // Vuelve a la pantalla anterior después de registrarse
         } catch (error) {
-            alert('Error en el registro: ' + error.message);
+            alert('Error en el registro: ' + (error.response?.data?.error || error.message));
         }
     };
 

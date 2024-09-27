@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   ImageBackground,
@@ -11,9 +11,44 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import globalStyles from "../styles/globalStyles";
 import { Pressable } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from "../AuthContext";
+import { useState } from "react";
+import axios from "axios";
+
+
+
 
 export const PrivacityScreen = () => {
-  const navigation = useNavigation(); 
+  const [password, setPassword] = useState("");
+  const [correo, setCorreo] = useState("");
+
+  const {email} = useAuth();
+  const navigation = useNavigation();
+
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      console.log("hola");
+      try {
+        console.log("hola");
+        const response = await axios.post(
+          "http://10.214.95.68:3000/api/users/infoPrivacyByEmail",
+          { email }
+        );
+        
+        setCorreo(response.data.email1);
+        setPassword(response.data.password);
+        
+      } catch (error) {
+        Alert.alert("Error al obtener los datos del usuario", error.message);
+      }
+    };
+
+    if (email) {
+      fetchUserData();
+    }
+  }, [email]);
+  
   return (
     <View style={globalStyles.container}>
       <ImageBackground
@@ -37,18 +72,21 @@ export const PrivacityScreen = () => {
             <Text style={styles.label}>Contraseña</Text>
           </View>
           <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="********"
-              style={styles.input}
-              numberOfLines={1}
-              multiline={false}
-            />
+          <TextInput
+            value={password}
+            placeholder="********"
+            style={styles.input}
+            numberOfLines={1}
+            multiline={false}
+            secureTextEntry={true}  // To hide password input
+          />
           </View>
           <View style={styles.containerText}>
             <Text style={styles.label}>Correo</Text>
           </View>
           <View style={styles.inputContainer}>
-            <TextInput
+          <TextInput
+              value={correo}
               placeholder="Fulano@gmail.com"
               style={styles.input}
               numberOfLines={1}

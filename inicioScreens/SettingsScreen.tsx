@@ -21,7 +21,7 @@ export default function SettingsScreen() {
           <Text>privacidad</Text>
         </Pressable>
 
-        <Pressable style={styles.butons}>
+        <Pressable style={styles.butons} onPress={()=>navigation.navigate('Login')}>
           <MaterialCommunityIcons name="logout" size={24} color="black" />
           <Text>Cerrar secion</Text>
         </Pressable>

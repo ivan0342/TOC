@@ -12,6 +12,7 @@ import ProfileScreen from './inicioScreens/ProfileScreen';
 import VerifyMail  from './OlvidasteTuContraseña/VerifyMail';
 import { PrivacityScreen } from './inicioScreens/PrivacityScreen';
 import { ChangePassword } from './OlvidasteTuContraseña/ChangePassword';
+import { AuthProvider } from './AuthContext';
 
 
 const Stack = createStackNavigator();
@@ -20,6 +21,7 @@ export default function App() {
 
 
   return (
+   <AuthProvider>
     <NavigationContainer>
     <Stack.Navigator initialRouteName="Login">
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
@@ -32,6 +34,7 @@ export default function App() {
 
     </Stack.Navigator>
   </NavigationContainer>
+  </AuthProvider> 
   );
 }
 

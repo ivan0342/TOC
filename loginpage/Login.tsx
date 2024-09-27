@@ -6,21 +6,25 @@ import { useNavigation } from '@react-navigation/native';
 import globalStyles from '../styles/globalStyles';
 import { useState } from 'react';
 import axios from 'axios';
+import { useAuth } from '../AuthContext';
 
 export default function Login(){
 const navigation = useNavigation();
     const [correo,setCorreo] = useState(" ");
     const [contraseña,setContraseña] = useState(" ");
+    const {setEmail}= useAuth();
 
     const handdleLogin= async()=>{
         try{
-            const response = await axios.post('http://10.214.107.58:3000/api/users/login',{
+            const response = await axios.post('http://10.214.95.68:3000/api/users/login',{
                 email: correo,
                 contraseña
             });
             if (response.status === 200) {
                 alert('Inicio de sesión exitoso');
+                setEmail(correo);
                 navigation.navigate('Inicio'); // Navegar a la pantalla principal
+
             }
         }catch(error){
             alert("incio de secion fallido revisa bien tus datos o si ya estas registrado", error.message)
