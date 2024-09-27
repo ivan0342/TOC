@@ -1,4 +1,3 @@
-// ProfileScreen.tsx
 import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
@@ -9,6 +8,7 @@ import {
   ImageBackground,
   Text,
   TextInput,
+  Button,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -17,24 +17,33 @@ import { useAuth } from "../AuthContext";
 import globalStyles from "../styles/globalStyles";
 
 const ProfileScreen: React.FC = () => {
-  const { email } = useAuth(); // Obtener el correo del contexto global
+  const { email } = useAuth();
   const [photoUri, setPhotoUri] = useState<string | null>(null);
   const [nombre, setNombre] = useState("");
   const [apellidos, setApellidos] = useState("");
   const [fechaNacimiento, setFechaNacimiento] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
-  // Obtener la información del usuario cuando se monta el componente
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.post(
-          "http://192.168.100.17:3000/api/users/infoProfileByEmail",
-          { email }  // Enviar el correo en el cuerpo de la solicitud
+          "http://10.214.105.125:3000/api/users/infoProfileByEmail",
+          { email }
         );
         const userData = response.data;
         setNombre(userData.name);
         setApellidos(userData.apellidos);
-        setFechaNacimiento(new Date(userData.fecha_nacimiento).toLocaleDateString());
+        setPhotoUri(userData.photoUri); // Cargar la URI de la imagen desde el backend
+        const fechaNacimientoBD = userData.fecha_nacimiento; // Esto debería ser de la forma 'YYYY-MM-DD'
+        if (fechaNacimientoBD) {
+          const [year, month, day] = fechaNacimientoBD.split("-");
+          const fechaFormateada = `${day}/${month}/${year}`; // Formato 'DD/MM/YYYY'
+          setFechaNacimiento(fechaFormateada);
+        } else {
+          setFechaNacimiento("Fecha inválida");
+        }
+        setPhotoUri(userData.profile_image);
       } catch (error) {
         Alert.alert("Error al obtener los datos del usuario", error.message);
       }
@@ -45,10 +54,28 @@ const ProfileScreen: React.FC = () => {
     }
   }, [email]);
 
+  const handleSaveChanges = async () => {
+    try {
+      const response = await axios.put(
+        "http://10.214.105.125:3000/api/users/updateProfile",
+        {
+          email,
+          name: nombre,
+          apellidos: apellidos,
+          fecha_nacimiento: fechaNacimiento,
+          profile_image: photoUri, // Enviar la URI de la imagen al servidor
+        }
+      );
+      Alert.alert("Éxito", "Los cambios han sido guardados correctamente.");
+      setIsEditing(false);
+    } catch (error) {
+      Alert.alert("Error al guardar los datos", error.message);
+    }
+  };
+
   const pickImage = async () => {
     const permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
-
     if (!permissionResult.granted) {
       Alert.alert(
         "Permiso requerido",
@@ -88,7 +115,7 @@ const ProfileScreen: React.FC = () => {
           <View style={styles.textWithButton}>
             <Text style={styles.texto}>Nombre</Text>
             <Pressable
-              onPress={() => Alert.alert("Editar nombre presionado")}
+              onPress={() => setIsEditing(!isEditing)}
               style={styles.editButton}
             >
               <FontAwesome name="pencil" size={20} color="#000" />
@@ -98,12 +125,13 @@ const ProfileScreen: React.FC = () => {
             style={styles.texto}
             value={nombre}
             onChangeText={setNombre}
+            editable={isEditing}
           />
 
           <View style={styles.textWithButton}>
             <Text style={styles.texto}>Apellidos</Text>
             <Pressable
-              onPress={() => Alert.alert("Editar apellidos presionado")}
+              onPress={() => setIsEditing(!isEditing)}
               style={styles.editButton}
             >
               <FontAwesome name="pencil" size={20} color="#000" />
@@ -113,6 +141,7 @@ const ProfileScreen: React.FC = () => {
             style={styles.texto}
             value={apellidos}
             onChangeText={setApellidos}
+            editable={isEditing}
           />
 
           <Text style={styles.texto}>Fecha Nacimiento</Text>
@@ -121,7 +150,10 @@ const ProfileScreen: React.FC = () => {
             value={fechaNacimiento}
             onChangeText={setFechaNacimiento}
             placeholder="DD/MM/AAAA"
+            editable={isEditing}
           />
+
+          <Button title="Guardar cambios" onPress={handleSaveChanges} />
         </View>
       </ImageBackground>
     </View>
@@ -154,7 +186,7 @@ const styles = StyleSheet.create({
   containerDatos: {
     backgroundColor: "#F1F5F6",
     width: 300,
-    height: 390,
+    height: 420,
     margin: 40,
     padding: 10,
     gap: 30,

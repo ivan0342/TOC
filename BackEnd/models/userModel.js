@@ -1,7 +1,7 @@
-const db = require('../database/db');
+const db = require("../database/db");
 
 const createUserTable = () => {
-    const sqlCreateTable = `
+  const sqlCreateTable = `
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name VARCHAR(100),
@@ -11,11 +11,11 @@ const createUserTable = () => {
         fecha_nacimiento DATE
     );`;
 
-    db.run(sqlCreateTable, (error) => {
-        if (error) {
-            console.error('Error al crear la tabla de usuarios:', error);
-        }
-    });
+  db.run(sqlCreateTable, (error) => {
+    if (error) {
+      console.error("Error al crear la tabla de usuarios:", error);
+    }
+  });
 };
 
 module.exports = { createUserTable };

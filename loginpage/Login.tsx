@@ -1,11 +1,18 @@
-import { ImageBackground, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import globalStyles from '../styles/globalStyles';
-import { useState } from 'react';
-import axios from 'axios';
-import { useAuth } from '../AuthContext'; // Importar el hook de autenticación
-import ProfileScreen from '../inicioScreens/ProfileScreen';
-
+import {
+  ImageBackground,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import globalStyles from "../styles/globalStyles";
+import { useState } from "react";
+import axios from "axios";
+import { useAuth } from "../AuthContext"; // Importar el hook de autenticación
+import ProfileScreen from "../inicioScreens/ProfileScreen";
 
 export default function Login() {
   const navigation = useNavigation();
@@ -15,33 +22,40 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://192.168.100.17:3000/api/users/login', {
-        email: correo,
-        contraseña, // Asegúrate de que este nombre coincida con lo que espera el servidor
-      });
+      const response = await axios.post(
+        "http://10.214.105.125:3000/api/users/login",
+        {
+          email: correo,
+          contraseña, // Asegúrate de que este nombre coincida con lo que espera el servidor
+        }
+      );
 
       // Log para verificar la respuesta del servidor
-      console.log('Respuesta del servidor:', response.data);
+      console.log("Respuesta del servidor:", response.data);
 
       if (response.status === 200) {
         // Log para verificar el email obtenido
-        console.log('Respuesta del servidor:', response.data);
+        console.log("Respuesta del servidor:", response.data);
         setEmail(response.data.email); // Establecer el correo en el contexto
-        alert('Inicio de sesión exitoso');
-        navigation.navigate('Inicio'); // Navegar a la pantalla principal
+        alert("Inicio de sesión exitoso");
+        navigation.navigate("Inicio"); // Navegar a la pantalla principal
       }
     } catch (error) {
       // Log para ver el error completo
-      console.log('Error al iniciar sesión:', error);
+      console.log("Error al iniciar sesión:", error);
 
       // Manejo mejorado de errores
-      const errorMessage = error.response?.data?.error || error.message || 'Error desconocido';
+      const errorMessage =
+        error.response?.data?.error || error.message || "Error desconocido";
       alert(`Inicio de sesión fallido: ${errorMessage}`);
     }
   };
   return (
     <View style={globalStyles.container}>
-      <ImageBackground style={globalStyles.background} source={require('../images/Frame5.jpg')}>
+      <ImageBackground
+        style={globalStyles.background}
+        source={require("../images/Frame5.jpg")}
+      >
         <Text style={styles.title}>Bienvenidos</Text>
 
         <View style={styles.containerLogin}>
@@ -67,13 +81,18 @@ export default function Login() {
           <Pressable style={styles.botones} onPress={handleLogin}>
             <Text style={styles.textbuttons}>Log In</Text>
           </Pressable>
-          <Text onPress={() => navigation.navigate('VerifyMail')}
-            style={styles.forgotPassword}>
+          <Text
+            onPress={() => navigation.navigate("VerifyMail")}
+            style={styles.forgotPassword}
+          >
             Olvidaste tu contraseña?
           </Text>
           <View style={globalStyles.line} />
           <Text>Registrate</Text>
-          <Pressable style={styles.botones} onPress={() => navigation.navigate('Register')}>
+          <Pressable
+            style={styles.botones}
+            onPress={() => navigation.navigate("Register")}
+          >
             <Text style={styles.textbuttons}>Register</Text>
           </Pressable>
         </View>
@@ -93,17 +112,17 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   containerLogin: {
-    flexDirection: 'column',
+    flexDirection: "column",
     marginTop: 30,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: '#E6E6FA',
+    alignItems: "center",
+    justifyContent: "space-around",
+    backgroundColor: "#E6E6FA",
     borderWidth: 1,
     padding: 0,
     paddingHorizontal: 50,
     paddingBottom: 120,
     borderRadius: 30,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 11 },
     shadowOpacity: 0.85,
     shadowRadius: 3,
@@ -112,27 +131,27 @@ const styles = StyleSheet.create({
   textinput: {
     marginTop: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: "black",
     width: 170,
     borderRadius: 20,
     padding: 3,
     backgroundColor: "white",
   },
   botones: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 20,
     borderWidth: 1,
     width: 170,
     height: 35,
     borderRadius: 20,
-    backgroundColor: '#B7AEF3',
+    backgroundColor: "#B7AEF3",
     padding: 5,
-    color: 'white',
+    color: "white",
   },
   forgotPassword: {
     padding: 15,
-    color: 'blue',
-    textDecorationLine: 'underline',
+    color: "blue",
+    textDecorationLine: "underline",
   },
   textbuttons: {
     color: "white",

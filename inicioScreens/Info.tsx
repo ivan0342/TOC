@@ -1,93 +1,234 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Pressable, Image } from 'react-native';
-import globalStyles from '../styles/globalStyles';
-
+import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Pressable,
+  Image,
+} from "react-native";
+import globalStyles from "../styles/globalStyles";
 
 function QueEsScreen() {
-    return (
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+  return (
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.container}>
         <Text style={globalStyles.title}>¿Qué es?</Text>
-        <Image style={styles.image}    source={require('../images/queesTOC.jpg')} />
-        <Text style={styles.text}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea vitae et tenetur magnam recusandae quaerat accusamus facere rem pariatur quidem error, voluptate dignissimos rerum reiciendis ullam quas nobis a placeat. Officia cupiditate id hic numquam qui nam tempora ex rem facilis ab ullam perferendis consequatur soluta repellendus harum, sapiente explicabo?</Text>
+        <Image
+          style={styles.image}
+          source={require("../images/queesTOC.jpg")}
+        />
+        <Text style={styles.text}>
+          El trastorno obsesivo-compulsivo TOC es una enfermedad mental que
+          consiste en presentar una y otra vez pensamientos obsesiones y
+          rituales compulsiones. Su vida está obstaculizada por estos, pero no
+          puede controlarlos ni detenerlos. Un patrón de pensamientos y miedos
+          no deseados conocido como obsesiones es parte del trastorno obsesivo
+          compulsivo.
+        </Text>
+        <Text style={styles.text}>
+          Estas obsesiones te hacen realizar comportamientos repetitivos,
+          también conocidos como compulsiones. Estas obsesiones y compulsiones
+          dificultan la vida diaria y causan mucho dolor emocional. El miedo
+          excesivo a contaminarse con gérmenes es uno de los temas que con
+          frecuencia se discuten en el trastorno obsesivo compulsivo. Es posible
+          que te laves las manos una y otra vez hasta que te duelan y se
+          agrieten para aliviar el miedo a la contaminación.
+        </Text>
       </View>
-      </ScrollView>
-    );
-  }
-  
-  function CaracteristicasScreen() {
-    return (
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      <View style={styles.container} >
+    </ScrollView>
+  );
+}
+
+function CaracteristicasScreen() {
+  return (
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <View style={styles.container}>
         <Text style={globalStyles.title}>¿Características?</Text>
-        <Image style={styles.image}    source={require('../images/caracteristicasTOC.png')} />
-        <Text  style={styles.text}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident delectus tempora placeat soluta itaque aspernatur inventore, officiis in saepe necessitatibus. Quis animi ex commodi sit sapiente voluptatem expedita rem libero labore, itaque cupiditate beatae autem quia soluta ducimus. Officiis dignissimos dolor magni modi asperiores iure in natus fugiat quam ratione culpa molestiae accusantium neque ex placeat, beatae laboriosam aliquid, architecto amet dolorem dolore sit dolores tempora commodi? Illo dolorem dolor culpa? Perspiciatis commodi atque quae? Eum voluptatum aliquid autem placeat, aut animi perspiciatis officiis nisi. Unde iste perferendis necessitatibus reiciendis. Inventore obcaecati ratione architecto quae et fugit numquam quaerat veritatis commodi id fugiat aut molestiae provident libero, dolore itaque, asperiores officia unde perspiciatis esse ex dolores nihil necessitatibus adipisci. Magnam excepturi cum explicabo reprehenderit. Velit in, saepe impedit perspiciatis nostrum sed maxime optio tempore quo quasi explicabo doloremque ea harum cum consequatur rerum fuga itaque distinctio pariatur magni quaerat libero.</Text>
+        <Image
+          style={styles.image}
+          source={require("../images/caracteristicasTOC.png")}
+        />
+        <Text style={styles.text}>
+          Este trastorno puede incluir tanto síntomas de obsesión como
+          compulsión.
+        </Text>
+        <Text style={{ fontWeight: "bold" }}>Compulsión.</Text>
+        <View>
+          <View>
+            <Text style={styles.subtext}>
+              • Miedo a contaminarse al tocar objetos que otros han tocado.
+            </Text>
+            <Text style={styles.subtext}>
+              • Dudar si cerraste la puerta con llave o apagaste la cocina.
+            </Text>
+            <Text style={styles.subtext}>
+              • Estrés intenso cuando los objetos no están ordenados u
+              orientados de cierta manera.
+            </Text>
+            <Text style={styles.subtext}>
+              • Imágenes mentales de arrollar a una multitud de personas con tu
+              automóvil.
+            </Text>
+            <Text style={styles.subtext}>
+              • Pensar en gritar obscenidades o actuar de forma inapropiada en
+              público.
+            </Text>
+            <Text style={styles.subtext}>
+              • Imágenes sexuales desagradables.
+            </Text>
+            <Text style={styles.subtext}>
+              • Evitar situaciones que puedan causar obsesiones, como darle la
+              mano a alguien.
+            </Text>
+          </View>
+        </View>
+        <Text style={{ fontWeight: "bold", marginTop: 30 }}>Obsesión.</Text>
+        <View>
+          <Text style={styles.subtext}>
+            • Miedo a la contaminación o la suciedad.
+          </Text>
+          <Text style={styles.subtext}>
+            • Dudar y tener dificultades para lidiar con la incertidumbre.
+          </Text>
+          <Text style={styles.subtext}>
+            • Necesidad de que las cosas estén ordenadas y equilibradas.
+          </Text>
+          <Text style={styles.subtext}>
+            • Pensamientos agresivos u horribles sobre perder el control y
+            hacerte daño o dañar a otras personas.
+          </Text>
+          <Text style={styles.subtext}>
+            • Pensamientos no deseados, como agresiones o temas sexuales o
+            religiosos.
+          </Text>
+          <Text style={styles.subtext}>
+            Algunas personas con TOC también tienen un síndrome de Tourette u
+            otro trastorno de tics. Los tics son espasmos, movimientos o sonidos
+            repentinos que las personas hacen una y otra vez. Las personas con
+            tics no pueden evitar que su cuerpo los haga.
+          </Text>
+        </View>
       </View>
-      </ScrollView>
-    );
-  }
-  
-  function ComoIdentificarloScreen() {
-    return (
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+    </ScrollView>
+  );
+}
+
+function ComoIdentificarloScreen() {
+  return (
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.container}>
         <Text style={globalStyles.title}>¿Cómo identificarlo?</Text>
-        <Image style={styles.image}    source={require('../images/comoidentificarloTOC.jpg')} />
-        <Text  style={styles.text}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi fuga pariatur accusantium illum. Error voluptatem voluptatibus blanditiis facere quam. Fuga magnam sed voluptatem aliquam optio accusamus hic laboriosam officia cum libero eum quam consequatur, placeat ipsam earum quibusdam, unde nemo, voluptates qui ipsum maxime? Natus alias esse eveniet repellendus neque nesciunt facilis suscipit voluptatum ipsam provident fugiat pariatur nobis, aliquam error ut repudiandae in sit, ipsum aspernatur est eligendi voluptatem? Quasi modi, hic assumenda accusamus voluptates tempore corrupti quibusdam aliquam eligendi sapiente earum enim maiores amet consectetur saepe. Dicta assumenda exercitationem in magnam hic consectetur voluptatum odit, sequi est modi excepturi ad, minus consequuntur veniam quisquam magni, autem nihil cumque quasi. Deserunt quis, quam architecto maxime harum voluptatem temporibus possimus? Corporis, eaque! Adipisci laudantium, sit odit assumenda atque quasi est. Non esse alias quam libero laudantium nesciunt consequuntur, neque dignissimos voluptates eveniet saepe totam deleniti veniam sequi voluptas porro, beatae similique vel! Enim eum sint fuga sunt vel recusandae nesciunt quibusdam quia ducimus vitae iusto, suscipit beatae pariatur nisi blanditiis repellendus in aperiam debitis aliquam, id ex atque. Dolores deserunt beatae nulla quasi fugit possimus ullam dicta sapiente, optio soluta quam magni, quos fugiat dolorum adipisci odit obcaecati. Dolores quidem accusamus, dolore porro illum odit fugiat dicta corporis veritatis aspernatur ab, fuga cupiditate nobis. Aspernatur, libero. Iusto illum ipsam, soluta nisi, quos consequatur corporis assumenda similique rem asperiores eos incidunt nobis eius tempore alias pariatur earum sequi, vitae molestiae officia possimus ad ratione. Error exercitationem expedita doloremque porro ipsam doloribus id totam voluptas ad repellendus maiores rerum sint mollitia dignissimos, iusto molestiae voluptatibus cum nam quidem officiis. Eius velit accusantium blanditiis laboriosam omnis deserunt vero! Blanditiis consequuntur nisi ipsam illo eos repellendus beatae officiis, soluta nobis voluptate consectetur. Quae ipsum unde facere delectus eos? Sunt consequatur eaque id alias ipsam!</Text>      
+        <Image
+          style={styles.image}
+          source={require("../images/comoidentificarloTOC.jpg")}
+        />
+        <Text style={styles.text}>
+          El trastorno obsesivo compulsivo generalmente comienza en la
+          adolescencia o en los primeros años de la edad adulta, pero también
+          puede comenzar en la infancia. Los síntomas suelen aparecer
+          gradualmente y suelen variar en gravedad a lo largo de la vida.
+          Además, los tipos de obsesiones y compulsiones pueden cambiar con el
+          tiempo. En situaciones de mucho estrés, como momentos de transiciones
+          y cambios, los síntomas suelen empeorar.
+        </Text>
+        <Text style={styles.text}>
+          El trastorno obsesivo compulsivo, que generalmente se considera un
+          trastorno de por vida, puede tener síntomas de leves a moderados o ser
+          tan grave y requerir tanto tiempo que se vuelve incapacitante. Los
+          factores de resigo que más comúnmente se presentan son los siguientes:
+        </Text>
+        <View>
+          <Text style={[{ fontWeight: "bold" }, styles.text]}>
+            • Historia familiar:
+          </Text>
+          <Text style={styles.subtext}>
+            Las personas con un pariente de primer grado (padre, hermano o hijo)
+            que tiene TOC presentan un mayor riesgo. Esto es especialmente
+            cierto si el familiar desarrolló TOC cuando era niño o adolescente.
+          </Text>
+        </View>
+        <View>
+          <Text style={{ fontWeight: "bold" }}>
+            • Estructura y funcionamiento del cerebro:
+          </Text>
+          <Text style={styles.subtext}>
+            Los estudios de imágenes demuestran que las personas con TOC tienen
+            diferencias en ciertas partes del cerebro. Los investigadores
+            necesitan hacer más estudios para comprender la conexión entre estas
+            diferencias cerebrales y el TOC.
+          </Text>
+        </View>
+        <View>
+          <Text style={{ fontWeight: "bold" }}>
+            • Trauma infantil como el abuso infantil:
+          </Text>
+          <Text style={styles.subtext}>
+            Algunos estudios han encontrado un vínculo entre el trauma en la
+            infancia y el TOC. Se necesita más investigación para comprender
+            mejor esta relación.
+          </Text>
+        </View>
       </View>
-      </ScrollView>
-    );
-  }
+    </ScrollView>
+  );
+}
 
-export default function Info({msg} : {msg:string}){
-  if(msg=="Caracteristicas"){
-    return(
-      <View >
+export default function Info({ msg }: { msg: string }) {
+  if (msg == "Caracteristicas") {
+    return (
+      <View>
         <CaracteristicasScreen></CaracteristicasScreen>
       </View>
-    )
+    );
   }
-  if(msg=="¿Que es?"){
-    return(
-      <View >
+  if (msg == "¿Que es?") {
+    return (
+      <View>
         <QueEsScreen></QueEsScreen>
       </View>
-    )
+    );
   }
-  if(msg=="¿Como identificarlo?"){
-    return(
-      <View >
+  if (msg == "¿Como identificarlo?") {
+    return (
+      <View>
         <ComoIdentificarloScreen></ComoIdentificarloScreen>
       </View>
-    )
-  }
-  else{
-    return(
+    );
+  } else {
+    return (
       <View style={styles.container}>
-      <ScrollView >
+        <ScrollView>
           <QueEsScreen></QueEsScreen>
           <ComoIdentificarloScreen></ComoIdentificarloScreen>
           <CaracteristicasScreen></CaracteristicasScreen>
-      </ScrollView>
+        </ScrollView>
       </View>
-      )
+    );
   }
-  }
-  const styles = StyleSheet.create({
-    container:{
-      justifyContent:'center',
-      alignItems:'center',
-    },
-    scrollViewContent: {
-      padding: 20,
-      color:'blue',
-    },
-    image:{
-      width:320,
-      height:280,
-      borderRadius:20,
-    },
-    text:{
-      textAlign:'justify',
-    }
-})
+}
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  scrollViewContent: {
+    padding: 20,
+    color: "blue",
+  },
+  image: {
+    width: 320,
+    height: 280,
+    borderRadius: 20,
+    marginTop: 30,
+  },
+  text: {
+    textAlign: "justify",
+    justifyContent: "center",
+    marginTop: 30,
+  },
+  subtext: {
+    textAlign: "justify",
+    justifyContent: "center",
+  },
+});

@@ -52,7 +52,9 @@ const loginUser = (req, res) => {
       return res.status(400).json({ error: "Contraseña incorrecta" });
     }
 
-    res.status(200).json({ message: "Que pedo putito", email: user.email });
+    res
+      .status(200)
+      .json({ message: "Entraste al endpoint de login", email: user.email });
   });
 };
 
@@ -76,8 +78,8 @@ const getUserById = (req, res) => {
 
 const getUserByEmail = (req, res) => {
   const { email } = req.body; // Obtener el email desde el cuerpo de la solicitud
-  console.log(email);
-  const sqlSelect = `SELECT name, apellidos, fecha_nacimiento FROM users WHERE email = ?`;
+  console.log("Entre a userbyemail");
+  const sqlSelect = `SELECT name, apellidos, fecha_nacimiento, profile_image FROM users WHERE email = ?`; // Agregar profile_image
 
   db.get(sqlSelect, [email], (error, user) => {
     if (error) {
@@ -88,7 +90,29 @@ const getUserByEmail = (req, res) => {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
-    res.status(200).json(user);
+    res.status(200).json(user); // Devolver el usuario con la URI de la imagen
   });
 };
-module.exports = { registerUser, loginUser, getUserByEmail };
+
+// Actualizar perfil de usuario
+const updateProfile = (req, res) => {
+  console.log("ENTRE A UPDATE");
+  const { email, name, apellidos, profile_image } = req.body;
+  console.log({ profile_image });
+
+  const sqlUpdate = `UPDATE users SET name = ?, apellidos = ?, profile_image = ? WHERE email = ?`;
+
+  db.run(sqlUpdate, [name, apellidos, profile_image, email], (error) => {
+    if (error) {
+      return res.status(500).json({ error: "Error al actualizar el perfil" });
+    }
+    res.status(200).json({ message: "Perfil actualizado exitosamente" });
+  });
+};
+
+module.exports = {
+  registerUser,
+  loginUser,
+  getUserByEmail,
+  updateProfile,
+};
