@@ -53,37 +53,28 @@ function CaracteristicasScreen() {
           Este trastorno puede incluir tanto síntomas de obsesión como
           compulsión.
         </Text>
-        <Text style={{ fontWeight: "bold" }}>Compulsión.</Text>
+        <Text style={styles.subheading}>Compulsión</Text>
         <View>
-          <View>
-            <Text style={styles.subtext}>
-              • Miedo a contaminarse al tocar objetos que otros han tocado.
-            </Text>
-            <Text style={styles.subtext}>
-              • Dudar si cerraste la puerta con llave o apagaste la cocina.
-            </Text>
-            <Text style={styles.subtext}>
-              • Estrés intenso cuando los objetos no están ordenados u
-              orientados de cierta manera.
-            </Text>
-            <Text style={styles.subtext}>
-              • Imágenes mentales de arrollar a una multitud de personas con tu
-              automóvil.
-            </Text>
-            <Text style={styles.subtext}>
-              • Pensar en gritar obscenidades o actuar de forma inapropiada en
-              público.
-            </Text>
-            <Text style={styles.subtext}>
-              • Imágenes sexuales desagradables.
-            </Text>
-            <Text style={styles.subtext}>
-              • Evitar situaciones que puedan causar obsesiones, como darle la
-              mano a alguien.
-            </Text>
-          </View>
+          <Text style={styles.subtext}>
+            • Miedo a contaminarse al tocar objetos que otros han tocado.
+          </Text>
+          <Text style={styles.subtext}>
+            • Dudar si cerraste la puerta con llave o apagaste la cocina.
+          </Text>
+          <Text style={styles.subtext}>
+            • Estrés intenso cuando los objetos no están ordenados u orientados
+            de cierta manera.
+          </Text>
+          <Text style={styles.subtext}>
+            • Imágenes mentales de arrollar a una multitud de personas con tu
+            automóvil.
+          </Text>
+          <Text style={styles.subtext}>
+            • Pensar en gritar obscenidades o actuar de forma inapropiada en
+            público.
+          </Text>
         </View>
-        <Text style={{ fontWeight: "bold", marginTop: 30 }}>Obsesión.</Text>
+        <Text style={styles.subheading}>Obsesión</Text>
         <View>
           <Text style={styles.subtext}>
             • Miedo a la contaminación o la suciedad.
@@ -93,20 +84,6 @@ function CaracteristicasScreen() {
           </Text>
           <Text style={styles.subtext}>
             • Necesidad de que las cosas estén ordenadas y equilibradas.
-          </Text>
-          <Text style={styles.subtext}>
-            • Pensamientos agresivos u horribles sobre perder el control y
-            hacerte daño o dañar a otras personas.
-          </Text>
-          <Text style={styles.subtext}>
-            • Pensamientos no deseados, como agresiones o temas sexuales o
-            religiosos.
-          </Text>
-          <Text style={styles.subtext}>
-            Algunas personas con TOC también tienen un síndrome de Tourette u
-            otro trastorno de tics. Los tics son espasmos, movimientos o sonidos
-            repentinos que las personas hacen una y otra vez. Las personas con
-            tics no pueden evitar que su cuerpo los haga.
           </Text>
         </View>
       </View>
@@ -139,34 +116,10 @@ function ComoIdentificarloScreen() {
           factores de resigo que más comúnmente se presentan son los siguientes:
         </Text>
         <View>
-          <Text style={[{ fontWeight: "bold" }, styles.text]}>
-            • Historia familiar:
-          </Text>
+          <Text style={styles.subheading}>Historia familiar:</Text>
           <Text style={styles.subtext}>
             Las personas con un pariente de primer grado (padre, hermano o hijo)
-            que tiene TOC presentan un mayor riesgo. Esto es especialmente
-            cierto si el familiar desarrolló TOC cuando era niño o adolescente.
-          </Text>
-        </View>
-        <View>
-          <Text style={{ fontWeight: "bold" }}>
-            • Estructura y funcionamiento del cerebro:
-          </Text>
-          <Text style={styles.subtext}>
-            Los estudios de imágenes demuestran que las personas con TOC tienen
-            diferencias en ciertas partes del cerebro. Los investigadores
-            necesitan hacer más estudios para comprender la conexión entre estas
-            diferencias cerebrales y el TOC.
-          </Text>
-        </View>
-        <View>
-          <Text style={{ fontWeight: "bold" }}>
-            • Trauma infantil como el abuso infantil:
-          </Text>
-          <Text style={styles.subtext}>
-            Algunos estudios han encontrado un vínculo entre el trauma en la
-            infancia y el TOC. Se necesita más investigación para comprender
-            mejor esta relación.
+            que tiene TOC presentan un mayor riesgo.
           </Text>
         </View>
       </View>
@@ -178,57 +131,82 @@ export default function Info({ msg }: { msg: string }) {
   if (msg == "Caracteristicas") {
     return (
       <View>
-        <CaracteristicasScreen></CaracteristicasScreen>
+        <CaracteristicasScreen />
       </View>
     );
   }
   if (msg == "¿Que es?") {
     return (
       <View>
-        <QueEsScreen></QueEsScreen>
+        <QueEsScreen />
       </View>
     );
   }
   if (msg == "¿Como identificarlo?") {
     return (
       <View>
-        <ComoIdentificarloScreen></ComoIdentificarloScreen>
+        <ComoIdentificarloScreen />
       </View>
     );
   } else {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <QueEsScreen></QueEsScreen>
-          <ComoIdentificarloScreen></ComoIdentificarloScreen>
-          <CaracteristicasScreen></CaracteristicasScreen>
+          <QueEsScreen />
+          <ComoIdentificarloScreen />
+          <CaracteristicasScreen />
         </ScrollView>
       </View>
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#f0f4ff", // Color de fondo suave
+    padding: 20,
   },
   scrollViewContent: {
     padding: 20,
-    color: "blue",
   },
   image: {
     width: 320,
     height: 280,
     borderRadius: 20,
     marginTop: 30,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
   },
   text: {
+    fontSize: 16,
+    lineHeight: 24,
     textAlign: "justify",
-    justifyContent: "center",
-    marginTop: 30,
+    marginVertical: 15,
+  },
+  subheading: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 20,
   },
   subtext: {
+    fontSize: 14,
+    lineHeight: 22,
     textAlign: "justify",
-    justifyContent: "center",
+    marginVertical: 5,
+  },
+  button: {
+    backgroundColor: "#8F66E6", // Color del botón
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: "#fff",
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });

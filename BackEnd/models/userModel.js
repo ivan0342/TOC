@@ -8,7 +8,9 @@ const createUserTable = () => {
         apellidos VARCHAR(100),
         email VARCHAR(100),
         contraseña VARCHAR(100),
-        fecha_nacimiento DATE
+        fecha_nacimiento DATE,
+        verification_code VARCHAR(6),
+        verification_code_expiration DATETIME
     );`;
 
   db.run(sqlCreateTable, (error) => {

@@ -23,7 +23,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        "http://10.214.105.125:3000/api/users/login",
+        "http://10.214.76.173:3000/api/users/login",
         {
           email: correo,
           contraseña, // Asegúrate de que este nombre coincida con lo que espera el servidor
@@ -36,7 +36,7 @@ export default function Login() {
       if (response.status === 200) {
         // Log para verificar el email obtenido
         console.log("Respuesta del servidor:", response.data);
-        setEmail(response.data.email); // Establecer el correo en el contexto
+        setEmail(correo); // Establecer el correo en el contexto
         alert("Inicio de sesión exitoso");
         navigation.navigate("Inicio"); // Navegar a la pantalla principal
       }

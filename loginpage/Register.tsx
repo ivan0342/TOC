@@ -34,11 +34,22 @@ export default function Register() {
       return;
     }
 
+    if (/\s/.test(contraseña)) {
+      alert("La contraseña no puede contener espacios");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar el correo
+    if (!emailRegex.test(correo)) {
+      alert("El formato del correo electrónico no es válido");
+      return;
+    }
+
     const formattedDate = fechaNacimiento.toISOString().split("T")[0];
 
     try {
       const response = await axios.post(
-        "http://10.214.105.125:3000/api/users/register",
+        "http://10.214.76.173:3000/api/users/register",
         {
           name: nombre,
           apellidos,
@@ -95,10 +106,11 @@ export default function Register() {
 
             <Text style={styles.text}>Fecha de nacimiento:</Text>
             <Pressable onPress={() => setShowDatePicker(true)}>
-              <Text style={styles.textinput}>
-                {fechaNacimiento.toLocaleDateString()}{" "}
-                {/* Mostrar la fecha seleccionada */}
-              </Text>
+              <TextInput
+                style={styles.textinput}
+                value={fechaNacimiento.toLocaleDateString()} // Mostrar la fecha seleccionada
+                editable={false} // Deshabilitar la edición directa
+              />
             </Pressable>
             {showDatePicker && (
               <DateTimePicker
@@ -165,6 +177,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 40,
     borderRadius: 20,
+    textAlign: "center", // Centrar el texto
   },
   text: {
     marginTop: 15,

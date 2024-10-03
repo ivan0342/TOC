@@ -5,10 +5,54 @@ import {
   View,
   TextInput,
   Pressable,
+  Alert,
 } from "react-native";
 import globalStyles from "../styles/globalStyles";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../AuthContext";
 
-export const ChangePassword = () => {
+export const ChangePassword = ({ route }) => {
+  //const {email}= useAuth();
+  const { email } = route.params;
+  const navigation = useNavigation();
+
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const changePassword = async () => {
+    if (!newPassword || !confirmPassword) {
+      Alert.alert("Error", "Todos los campos son obligatorios");
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      Alert.alert("Error", "Las contraseñas no coinciden");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://10.214.76.173:3000/api/users/changePassword",
+        { email, newPassword }
+      );
+
+      if (response.data.success) {
+        Alert.alert("Éxito", "Contraseña actualizada correctamente");
+        navigation.navigate("Login"); // Navegar de regreso al login
+      } else {
+        Alert.alert(
+          "Error",
+          response.data.message || "Error al cambiar la contraseña"
+        );
+      }
+    } catch (error) {
+      console.error("Error al cambiar la contraseña:", error);
+      Alert.alert("Error", "Ocurrió un problema con el servidor.");
+    }
+  };
+
   return (
     <View style={globalStyles.container}>
       <ImageBackground
@@ -17,23 +61,31 @@ export const ChangePassword = () => {
       >
         <View style={styles.container}>
           <Text style={styles.title}>Cambiar Contraseña</Text>
-          <Text style={styles.label}>Contraseña</Text>
+
+          <Text style={styles.label}>Nueva Contraseña</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textinput} />
+            <TextInput
+              style={styles.textinput}
+              secureTextEntry
+              value={newPassword}
+              onChangeText={setNewPassword}
+              placeholder="Ingresa la nueva contraseña"
+            />
           </View>
+
           <Text style={styles.label}>Confirmar Contraseña</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textinput} />
+            <TextInput
+              style={styles.textinput}
+              secureTextEntry
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              placeholder="Confirma la nueva contraseña"
+            />
           </View>
-          <Pressable style={styles.botones}>
-            <Text
-              style={{
-                fontFamily: "Bebas Neue",
-                fontSize: 22,
-              }}
-            >
-              Aceptar
-            </Text>
+
+          <Pressable style={styles.botones} onPress={changePassword}>
+            <Text style={styles.buttonText}>Aceptar</Text>
           </Pressable>
         </View>
       </ImageBackground>
@@ -48,8 +100,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     borderRadius: 20,
-    paddingLeft: 10, // Espaciado interno para el texto.
-    backgroundColor: "#F0F0F0", // Fondo claro para resaltar la sombra.
+    paddingLeft: 10,
+    backgroundColor: "#F0F0F0",
   },
   container: {
     flexDirection: "column",
@@ -75,6 +127,10 @@ const styles = StyleSheet.create({
     color: "#FFF",
     justifyContent: "center",
   },
+  buttonText: {
+    fontFamily: "Bebas Neue",
+    fontSize: 22,
+  },
   label: {
     alignSelf: "center",
     marginLeft: -5,
@@ -87,12 +143,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: "white",
     shadowColor: "#000",
-    shadowOffset: { width: -3, height: -3 }, // Simula sombra desde arriba.
+    shadowOffset: { width: -3, height: -3 },
     shadowOpacity: 0.2,
     shadowRadius: 6,
-    elevation: 4, // Para Android.
+    elevation: 4,
     marginVertical: 50,
     marginTop: 10,
-    justifyContent: "center", // Alinea el TextInput dentro del contenedor.// Alinea el TextInput dentro del contenedor.
+    justifyContent: "center",
   },
 });
