@@ -28,7 +28,7 @@ export const PrivacityScreen = () => {
       try {
         console.log("hola");
         const response = await axios.post(
-          "http://10.214.112.175:3000/api/users/infoPrivacyByEmail",
+          "http://10.214.76.173:3000/api/users/infoPrivacyByEmail",
           { email }
         );
 

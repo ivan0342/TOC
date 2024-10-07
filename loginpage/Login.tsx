@@ -62,7 +62,7 @@ export default function Login() {
           <Text style={styles.subtitle}>Log In</Text>
           <View style={globalStyles.line} />
 
-          <Text>Correo</Text>
+          <Text style={styles.text}>Correo</Text>
           <TextInput
             style={styles.textinput}
             value={correo}
@@ -70,7 +70,7 @@ export default function Login() {
             keyboardType="email-address"
           />
 
-          <Text>Contraseña</Text>
+          <Text style={styles.text}>Contraseña</Text>
           <TextInput
             style={styles.textinput}
             value={contraseña}
@@ -105,11 +105,13 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 150,
     fontSize: 30,
+    fontWeight: "bold",
   },
   subtitle: {
     marginTop: 30,
     fontSize: 25,
     marginBottom: 30,
+    fontWeight: "bold",
   },
   containerLogin: {
     flexDirection: "column",
@@ -127,6 +129,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.85,
     shadowRadius: 3,
     elevation: 30,
+    height: 550,
   },
   textinput: {
     marginTop: 10,
@@ -136,6 +139,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 3,
     backgroundColor: "white",
+    marginBottom: 13,
   },
   botones: {
     alignItems: "center",
@@ -155,5 +159,13 @@ const styles = StyleSheet.create({
   },
   textbuttons: {
     color: "white",
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  text: {
+    marginTop: 15,
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#333", // Color más oscuro para mejor contraste
   },
 });

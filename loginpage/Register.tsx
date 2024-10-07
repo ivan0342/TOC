@@ -18,7 +18,6 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 export default function Register() {
   const navigation = useNavigation();
 
-  // Crear estados para los campos de texto
   const [nombre, setNombre] = useState("");
   const [apellidos, setApellidos] = useState("");
   const [fechaNacimiento, setFechaNacimiento] = useState(new Date());
@@ -27,7 +26,6 @@ export default function Register() {
   const [confirmarContraseña, setConfirmarContraseña] = useState("");
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  // Manejar el registro
   const handleRegister = async () => {
     if (contraseña !== confirmarContraseña) {
       alert("Las contraseñas no coinciden");
@@ -39,7 +37,7 @@ export default function Register() {
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar el correo
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(correo)) {
       alert("El formato del correo electrónico no es válido");
       return;
@@ -66,11 +64,10 @@ export default function Register() {
     }
   };
 
-  // Manejar el cambio de fecha
   const onChangeDate = (event, selectedDate) => {
     const currentDate = selectedDate || fechaNacimiento;
     setShowDatePicker(false);
-    setFechaNacimiento(currentDate); // Establecer la fecha seleccionada
+    setFechaNacimiento(currentDate);
   };
 
   return (
@@ -79,37 +76,40 @@ export default function Register() {
         style={globalStyles.background}
         source={require("../images/registro.jpg")}
       >
-        <View style={styles.tittlecontainer}>
+        <View style={styles.titleContainer}>
           <Icon
             name="arrow-left"
             size={30}
-            color="#000"
+            color="black"
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.tittle}>Registro</Text>
+          <Text style={styles.title}>Registro</Text>
         </View>
-        <ScrollView>
-          <View style={styles.registercontainer}>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <View style={styles.registerContainer}>
             <Text style={styles.text}>Nombre:</Text>
             <TextInput
-              style={styles.textinput}
+              style={styles.textInput}
               value={nombre}
               onChangeText={setNombre}
+              placeholder="Ingresa tu nombre"
             />
 
             <Text style={styles.text}>Apellidos:</Text>
             <TextInput
-              style={styles.textinput}
+              style={styles.textInput}
               value={apellidos}
               onChangeText={setApellidos}
+              placeholder="Ingresa tus apellidos"
             />
 
             <Text style={styles.text}>Fecha de nacimiento:</Text>
             <Pressable onPress={() => setShowDatePicker(true)}>
               <TextInput
-                style={styles.textinput}
-                value={fechaNacimiento.toLocaleDateString()} // Mostrar la fecha seleccionada
-                editable={false} // Deshabilitar la edición directa
+                style={styles.textInput}
+                value={fechaNacimiento.toLocaleDateString()}
+                editable={false}
+                placeholder="Selecciona tu fecha de nacimiento"
               />
             </Pressable>
             {showDatePicker && (
@@ -123,30 +123,33 @@ export default function Register() {
 
             <Text style={styles.text}>Correo electrónico:</Text>
             <TextInput
-              style={styles.textinput}
+              style={styles.textInput}
               value={correo}
               onChangeText={setCorreo}
               keyboardType="email-address"
+              placeholder="Ingresa tu correo electrónico"
             />
 
             <Text style={styles.text}>Contraseña:</Text>
             <TextInput
-              style={styles.textinput}
+              style={styles.textInput}
               value={contraseña}
               onChangeText={setContraseña}
               secureTextEntry
+              placeholder="Ingresa tu contraseña"
             />
 
             <Text style={styles.text}>Confirmar contraseña:</Text>
             <TextInput
-              style={styles.textinput}
+              style={styles.textInput}
               value={confirmarContraseña}
               onChangeText={setConfirmarContraseña}
               secureTextEntry
+              placeholder="Confirma tu contraseña"
             />
 
-            <Pressable style={styles.botones} onPress={handleRegister}>
-              <Text>Aceptar</Text>
+            <Pressable style={styles.button} onPress={handleRegister}>
+              <Text style={styles.buttonText}>Aceptar</Text>
             </Pressable>
           </View>
         </ScrollView>
@@ -156,41 +159,72 @@ export default function Register() {
 }
 
 const styles = StyleSheet.create({
-  tittlecontainer: {
+  titleContainer: {
     marginTop: 40,
     flexDirection: "row",
-  },
-  tittle: {
-    paddingHorizontal: 100,
-    fontSize: 30,
-  },
-  registercontainer: {
-    flexDirection: "column",
-    marginTop: 50,
     alignItems: "center",
   },
-  textinput: {
-    backgroundColor: "white",
+  title: {
+    paddingHorizontal: 100,
+    fontSize: 30,
+    color: "black",
+    fontWeight: "bold",
+    marginTop: 15,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 40,
+  },
+  registerContainer: {
+    flexDirection: "column",
+    marginTop: 30,
+    alignItems: "center",
+    backgroundColor: "#E6E6FA", // Fondo blanco para el formulario
+    borderRadius: 15,
+    padding: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 10,
+    marginHorizontal: 20, // Añadir margen horizontal
+    marginVertical: 10, // Añadir margen vertical
+    borderColor: "#D1D1D1", // Borde para resaltar el contenedor
+    borderWidth: 1, // Ancho del borde
+  },
+  textInput: {
+    backgroundColor: "#F9F9F9", // Fondo gris claro para los campos
     marginTop: 10,
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "#D1D1D1",
     width: 250,
-    height: 40,
-    borderRadius: 20,
-    textAlign: "center", // Centrar el texto
+    height: 45,
+    borderRadius: 25,
+    paddingHorizontal: 15,
+    fontSize: 16,
   },
   text: {
     marginTop: 15,
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#333", // Color más oscuro para mejor contraste
   },
-  botones: {
+  button: {
     alignItems: "center",
     marginTop: 20,
     borderWidth: 2,
     width: 250,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: "#B7AEF3",
+    height: 45,
+    borderRadius: 25,
+    backgroundColor: "#8F66E6", // Color atractivo para el botón
     justifyContent: "center",
+    elevation: 3,
+  },
+  buttonText: {
     color: "#FFF",
+    fontWeight: "bold",
+    fontSize: 18,
   },
 });

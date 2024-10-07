@@ -87,8 +87,8 @@ const loginUser = (req, res) => {
 const transporter = nodemailer.createTransport({
   service: "gmail", // Puedes cambiar esto si no usas Gmail
   auth: {
-    user: "ivan.lsanchez03@gmail.com", // Tu correo
-    pass: "yuzq jsqy obve ewqr",
+    user: "ilabtoc@gmail.com", // Tu correo
+    pass: "boxy rebk xvmv xxlf",
   },
 });
 
@@ -97,7 +97,7 @@ const sendVerificationEmail = (req, res) => {
   const codeExpiration = Date.now() + 2 * 60 * 1000; // Código válido por 10 minutos
 
   const mailOptions = {
-    from: "ivan.lsanchez03@gmail.com",
+    from: "ilabtoc@gmail.com",
     to: email,
     subject: "Código de verificación",
     text: `Tu código de verificación es: ${randomString}`,
@@ -208,10 +208,12 @@ const infoPrivacyByEmail = async (req, res) => {
 const getUserByEmail = (req, res) => {
   const { email } = req.body; // Obtener el email desde el cuerpo de la solicitud
   console.log("Entre a userbyemail");
+  console.log(email);
   const sqlSelect = `SELECT name, apellidos, fecha_nacimiento, profile_image FROM users WHERE email = ?`; // Agregar profile_image
 
   db.get(sqlSelect, [email], (error, user) => {
     if (error) {
+      console.log("hubo un error");
       return res.status(500).json({ error: "Error del servidor" });
     }
 

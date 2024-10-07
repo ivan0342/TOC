@@ -5,6 +5,7 @@ import {
   ScrollView,
   Pressable,
   ImageBackground,
+  Image,
 } from "react-native";
 import globalStyles from "../styles/globalStyles";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -18,8 +19,16 @@ export default function SettingsScreen() {
     <View style={globalStyles.container}>
       <ImageBackground
         style={globalStyles.background}
-        source={require("../images/settings.jpg")}
+        source={require("../images/FondoClean.png")}
       >
+        <View style={styles.content}>
+          <Image
+            source={require("../images/cerebro.png")} // Ruta a la imagen del cerebro
+            style={styles.image} // Estilos para la imagen
+          />
+          <Text style={styles.title}>TOC</Text>
+          <Text style={styles.subtitle}>TRANSTORNO OBSESIVO COMPULSIVO</Text>
+        </View>
         <View style={styles.containerbuttons}>
           <Pressable
             style={styles.butons}
@@ -51,11 +60,35 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 50,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    marginBottom: 10, // Reducido para acercar la imagen al título
+  },
+  title: {
+    fontSize: 50,
+    fontWeight: "bold",
+    color: "#000000",
+    marginBottom: 5, // Reducido para acercar el título al subtítulo
+    fontFamily: "Bebas Neue",
+  },
+  subtitle: {
+    fontSize: 20,
+    color: "#000000",
+    marginBottom: 5, // Reducido para acercar el subtítulo a los botones
+    fontFamily: "Bebas Neue",
+  },
   containerbuttons: {
     flex: 2,
-    justifyContent: "center", // Centra el contenedor en la vertical
+    justifyContent: "center",
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 5, // Reducido para acercar los botones a los textos
   },
   butons: {
     backgroundColor: "#E5DDEF",

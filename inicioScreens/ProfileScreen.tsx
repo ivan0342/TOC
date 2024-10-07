@@ -8,7 +8,6 @@ import {
   ImageBackground,
   Text,
   TextInput,
-  Button,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -153,7 +152,9 @@ const ProfileScreen: React.FC = () => {
             editable={false}
           />
 
-          <Button title="Guardar cambios" onPress={handleSaveChanges} />
+          <Pressable style={styles.saveButton} onPress={handleSaveChanges}>
+            <Text style={styles.saveButtonText}>Guardar cambios</Text>
+          </Pressable>
         </View>
       </ImageBackground>
     </View>
@@ -183,20 +184,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginTop: 20,
   },
-  containerDatos: {
-    backgroundColor: "#F1F5F6",
-    width: 300,
-    height: 420,
-    margin: 40,
-    padding: 10,
-    gap: 30,
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 10,
-  },
   texto: {
     fontSize: 20,
   },
@@ -207,6 +194,39 @@ const styles = StyleSheet.create({
   },
   editButton: {
     padding: 10,
+  },
+  containerDatos: {
+    backgroundColor: "#F1F5F6",
+    width: 300,
+    height: 400,
+    margin: 40,
+    marginTop: 10,
+    gap: 15,
+    padding: 10,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 10,
+  },
+  saveButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10, // Cambiado de 20 a 10
+    borderRadius: 30,
+    backgroundColor: "#8F66E6",
+    height: 50,
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+  },
+  saveButtonText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 18,
   },
 });
 

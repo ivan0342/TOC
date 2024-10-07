@@ -10,7 +10,8 @@ const createUserTable = () => {
         contraseña VARCHAR(100),
         fecha_nacimiento DATE,
         verification_code VARCHAR(6),
-        verification_code_expiration DATETIME
+        verification_code_expiration DATETIME,
+        profile_image TEXT
     );`;
 
   db.run(sqlCreateTable, (error) => {
