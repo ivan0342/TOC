@@ -47,7 +47,7 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "http://10.214.76.173:3000/api/users/register",
+        "http://10.214.118.176:3000/api/users/register",
         {
           name: nombre,
           apellidos,

@@ -86,6 +86,26 @@ function CaracteristicasScreen() {
             • Necesidad de que las cosas estén ordenadas y equilibradas.
           </Text>
         </View>
+        <Text style={[globalStyles.title, { marginTop: 20 }]}>
+          Bibliografía
+        </Text>
+        <View style={{ marginTop: 20 }}>
+          <Text style={styles.subtext}>
+            • Trastorno obsesivo compulsivo (TOC) - Síntomas y causas - Mayo
+            Clinic. (2024, 16 marzo).
+            https://www.mayoclinic.org/es/diseases-conditions/obsessive-compulsive-disorder/symptoms-causes/syc-20354432
+          </Text>
+          <Text style={styles.subtext}>
+            • National Library of Medicine. (s. f.). Trastorno
+            obsesivo-compulsivo.
+            https://medlineplus.gov/spanish/obsessivecompulsivedisorder.html
+          </Text>
+          <Text style={styles.subtext}>
+            • Torres, A. (2024, 24 julio). El Trastorno Obsesivo-Compulsivo
+            (TOC): ¿qué es y cómo se manifiesta? Psicología y Mente.
+            https://psicologiaymente.com/clinica/trastorno-obsesivo-compulsivo-toc
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );

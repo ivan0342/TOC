@@ -27,7 +27,7 @@ const ProfileScreen: React.FC = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.post(
-          "http://10.214.76.173:3000/api/users/infoProfileByEmail",
+          "http://10.214.118.176:3000/api/users/infoProfileByEmail",
           { email }
         );
         const userData = response.data;
@@ -56,7 +56,7 @@ const ProfileScreen: React.FC = () => {
   const handleSaveChanges = async () => {
     try {
       const response = await axios.put(
-        "http://10.214.76.173:3000/api/users/updateProfile",
+        "http://10.214.118.176:3000/api/users/updateProfile",
         {
           email,
           name: nombre,
