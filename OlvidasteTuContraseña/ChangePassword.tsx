@@ -34,7 +34,7 @@ export const ChangePassword = ({ route }) => {
 
     try {
       const response = await axios.post(
-        "http://10.214.118.176:3000/api/users/changePassword",
+        "http://10.214.114.214:3000/api/users/changePassword",
         { email, newPassword }
       );
 
