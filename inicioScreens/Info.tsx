@@ -16,7 +16,7 @@ function QueEsScreen() {
         <Text style={globalStyles.title}>¿Qué es?</Text>
         <Image
           style={styles.image}
-          source={require("../images/queesTOC.jpg")}
+          source={require("../images/queEsTOC.jpg")}
         />
         <Text style={styles.text}>
           El trastorno obsesivo-compulsivo TOC es una enfermedad mental que
@@ -47,7 +47,7 @@ function CaracteristicasScreen() {
         <Text style={globalStyles.title}>¿Características?</Text>
         <Image
           style={styles.image}
-          source={require("../images/caracteristicasTOC.png")}
+          source={require("../images/CaracteristicasTOC.jpg")}
         />
         <Text style={styles.text}>
           Este trastorno puede incluir tanto síntomas de obsesión como
@@ -118,7 +118,7 @@ function ComoIdentificarloScreen() {
         <Text style={globalStyles.title}>¿Cómo identificarlo?</Text>
         <Image
           style={styles.image}
-          source={require("../images/comoidentificarloTOC.jpg")}
+          source={require("../images/ComoIdentificarTOC.jpg")}
         />
         <Text style={styles.text}>
           El trastorno obsesivo compulsivo generalmente comienza en la
