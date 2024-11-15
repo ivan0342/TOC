@@ -34,7 +34,7 @@ export const ChangePassword = ({ route }) => {
 
     try {
       const response = await axios.post(
-        "http://192.168.100.27:3000/api/users/changePassword",
+        "https://fcab-2806-2f0-50a1-fef5-44df-92d5-b028-55c1.ngrok-free.app/api/users/changePassword",
         { email, newPassword }
       );
 

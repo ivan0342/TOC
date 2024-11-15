@@ -26,7 +26,7 @@ export default function VerifyMail() {
         return;
       }
       const request = await axios.post(
-        "http://192.168.100.27:3000/api/users/VerifyEmail",
+        "https://fcab-2806-2f0-50a1-fef5-44df-92d5-b028-55c1.ngrok-free.app/api/users/VerifyEmail",
         { email, randomString }
       );
       console.log("Verification email sent:", request.data);
@@ -46,7 +46,7 @@ export default function VerifyMail() {
 
     try {
       const response = await axios.post(
-        "http://192.168.100.27:3000/api/users/confirmarCodigo",
+        "https://fcab-2806-2f0-50a1-fef5-44df-92d5-b028-55c1.ngrok-free.app/api/users/confirmarCodigo",
         { email, code }
       );
 

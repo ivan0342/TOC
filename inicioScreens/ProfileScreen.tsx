@@ -27,7 +27,7 @@ const ProfileScreen: React.FC = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.post(
-          "http://10.214.114.214:3000/api/users/infoProfileByEmail",
+          "https://fcab-2806-2f0-50a1-fef5-44df-92d5-b028-55c1.ngrok-free.app/api/users/infoProfileByEmail",
           { email }
         );
         const userData = response.data;
@@ -56,7 +56,7 @@ const ProfileScreen: React.FC = () => {
   const handleSaveChanges = async () => {
     try {
       const response = await axios.put(
-        "http://10.214.114.214:3000/api/users/updateProfile",
+        "http://localhost:3000/api/users/updateProfile",
         {
           email,
           name: nombre,
