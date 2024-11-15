@@ -56,7 +56,7 @@ const ProfileScreen: React.FC = () => {
   const handleSaveChanges = async () => {
     try {
       const response = await axios.put(
-        "http://localhost:3000/api/users/updateProfile",
+        "https://fcab-2806-2f0-50a1-fef5-44df-92d5-b028-55c1.ngrok-free.app/api/users/updateProfile",
         {
           email,
           name: nombre,
